@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/fullPage.min.css">
+	<style type="text/css">
+		
+		.slide{
+			background: #0ff;
+			height: 400px;
+		}
+		img{
+			width: 400px;
+		}
+		#menu{
+			position: fixed;
+			left: 0;
+			bottom: 0;
+		}
+	</style>
+</head>
+<body>
+	
+	<!-- 定义导航菜单 -->
+	<ul id="menu">
+	    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">1</a></li>
+	    <li data-menuanchor="secondPage"><a href="#secondPage">2</a></li>
+	    <li data-menuanchor="3rdPage"><a href="#3rdPage">3</a></li>
+	    <li data-menuanchor="4thPage"><a href="#4thPage">4</a></li>
+	</ul>
+	<!-- <a href="#firstPage/slide3">333</a> -->
+	<div id="fullpage">
+		<div class="section">
+		官网--http://www.bootcdn.cn/fullPage.js/readme/
+		第1页 data-anchor="slide1"给幻灯片添加锚点
+			<div class="slide" data-anchor="slide1"> Slide 1 </div>
+			<div class="slide" data-anchor="slide2"> Slide 2 </div>
+			<div class="slide" data-anchor="slide3"> Slide 3 </div>
+			<div class="slide" data-anchor="slide4"> Slide 4 </div>
+		</div>
+		<div class="section fp-auto-height">第2页
+			<!-- <img data-src="img/car.jpg" alt="tututu" /> -->
+			<!-- data-src=""  懒加载??? -->
+			<!-- fp-auto-height 自适应高度???-->
+		</div>
+		<div class="section">第3页
+			<div class="slide"> Slide 1 </div>
+			<div class="slide"> Slide 2 </div>
+			<div class="slide"> Slide 3 </div>
+			<div class="slide"> Slide 4 </div>
+		</div>
+		<div class="section">第4页</div>
+	</div>
+
+
+	<div id="header" style="height: 1000px;">
+		头部
+	</div>
+	
+
+	<!-- jq -->
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<!-- 滚动效果 -->
+	<script type="text/javascript" src="js/easings.min.js"></script>
+	<!-- 右侧滚动条 -->
+	<!-- scrollOverflow:true的时候使用 ????-->
+	<!-- <script type="text/javascript" src="js/slimscroll.min.js"></script> -->
+	<!-- fullpage -->
+	<script type="text/javascript" src="js/fullPage.min.js"></script>
+	<script type="text/javascript">
+
+
+		$('#fullpage').fullpage({
+        //Navigation
+
+        menu: '#menu',//指定要与滚动互动的导航菜单  对应的菜单会被自动添加active类
+       
+        lockAnchors: true, //是否取消section的锚点  ???
+       
+        anchors:['firstPage', 'secondPage','3rdPage','4thPage'], //给每屏添加锚点 如果这里不设置,幻灯片的data-anchor不起作用 不要和id值name值重合
+       
+        navigation: true, //默认false如果设置为true，那他将会显示一个小圆圈组成的快速导航栏。
+        navigationPosition: 'right', //结合参数navigation一起使用，用于设置navigation定义的菜单显示的位置，可以设置为left/right。
+        navigationTooltips: ['第一页','第二页','第三页','第四页'],//当navigation设置为true的时候，鼠标移动到快速导航上面的提示文本，
+        showActiveTooltip: false,//是否自动显示navigationTooltips中设置的工具提示文本????
+        slidesNavigation: true, //设置幻灯片的小圆点快速导航
+        slidesNavPosition: 'bottom',//可选值top/bottom
+
+        //Scrolling
+        
+        css3: true,//是否使用JavaScript和CSS3转换滚动切片和幻灯片,如果浏览器不支持css3效果,那么可以在回调函数中进行设置补充
+        
+        scrollingSpeed: 700,//每个屏幕滚动动画执行的时间
+        
+        autoScrolling: true,// Defines whether to use the "automatic" scrolling or the "normal" one 屏幕是否整屏滚动
+       
+        fitToSection: true, //自适应整个窗口的空间??Determines whether or not to fit sections to the viewport or not. When set to true the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section (when )
+        fitToSectionDelay: 1000, //fitToSection为true时生效???
+        scrollBar: false,//是否使用浏览器默认的滚动条
+        
+        easing: 'easeInOutCubic',//动画过渡效果 需要easings.min.js
+        
+        easingcss3: 'ease',//在滚动屏幕中使用css3:true设置的过度效果
+        
+        loopBottom: false,//屏幕滚动到最后一个后，(向下)是否循序滚动到第一个
+        
+        loopTop: false,//屏幕滚动到第一个后，(向上)是否循序滚动到最后一个
+        
+        loopHorizontal: true,//水平的幻灯片是否循环切换。
+       
+        continuousVertical: true, //定义向下滚动到最后一节是否应该向下滚动到第一个，如果向上滚动的第一部分应该滚动到最后一个。不兼容loopTop和loopBottom选项。
+        continuousHorizontal: false,
+        scrollHorizontally: false,
+        interlockedSlides: false,
+        dragAndMove: false,
+        offsetSections: false,
+        resetSliders: false,
+        fadingEffect: false,
+        
+        normalScrollElements: '#header',//避免自动滚动，滚动时的一些元素??
+        scrollOverflow: true,//当内容超过屏幕的高度的时候，是否裁切多余的内容
+        scrollOverflowOptions: null,
+        
+        touchSensitivity: 15,//定义了浏览器窗口的宽度/高度的百分比，多远的触摸滑动可以跳转到下一个section / slide。
+        
+        normalScrollElementTouchThreshold: 5,//测试HTML标签树的机构，是否在在移动设备上支持触摸事件。
+        bigSectionsDestination: null,
+
+        //Accessibility
+        
+        keyboardScrolling: true,//是否可以通过键盘箭头事件控制section的滚动。左右为幻灯片轮播 上下为屏幕滚动
+        
+        animateAnchor: true,//定义当网页的URL中有锚文本的时候，是否帮用户定位到对应的section或者slide。
+        
+        recordHistory: true,//是否将网页滚动的的状态纪录到浏览器的历史记录中。    ----当设置为false时候，用户的浏览路径不会记录到浏览器的历史纪录中，如果要取消这个选项可以使用autoScrolling:false。
+
+        //Design
+       
+        controlArrows: true, //是否用箭头控制幻灯片左右移动
+        
+        verticalCentered: true,//是否垂直居中网页的内容 如果为false 调用afterrender回调函数加载其它的脚本库设置你网页的内容
+       
+        sectionsColor : ['#ccc', '#999','#666','#333'], //定义每个section的CSS背景演示
+       
+        paddingTop: '3em', //每个section固定的头部留白
+        paddingBottom: '10px',//每个section固定的底部留白
+       
+        fixedElements: '#menu', //某个元素是否在网页的固定位置(需要定位)
+        responsiveWidth: 0,//???
+        responsiveHeight: 0,//???
+        responsiveSlides: false,
+        
+        resize:true,//是否在窗口改变大小后，自动调整网页中字体的大小(窗口变小之后再变大,字体不会跟着变大)
+        
+        //Custom selectors
+        sectionSelector: '.section',//定义用于选择全屏滚动内容的jQuery选择器,可以自定义
+        slideSelector: '.slide',//用于插件幻灯片jQuery选择器
+
+        lazyLoading: true,
+
+        //events
+        onLeave: function(index, nextIndex, direction){
+        	//滚动前的回调函数
+        	//index 是离开的“页面”的序号，从1开始计算；
+        	//nextIndex 是滚动到的“页面”的序号，从1开始计算；
+        	//direction 判断往上滚动还是往下滚动，值是 up 或 down。
+        	//console.log(index, nextIndex, direction);//1 2 down
+
+        	//取消某一屏的滚动????
+        	// if(nextIndex == 3){
+	        //     return false;
+	        // }
+        },
+        afterLoad: function(anchorLink,index){
+        	//滚动到某一屏后的回调函数
+        	//anchorLink 是锚链接的名称 
+			//index 是section的索引，从1开始计算
+			if(index == 3){
+				//console.log($(this),anchorLink);//window 3rdPage
+			}
+        },
+        afterRender: function(){
+        	//这个回调函数只是在生成页面结构的时候调用。这是要用来初始化其他插件或删除任何需要的文件准备好代码的回调（这个插件修改DOM创建得到的结构）。
+        	//alert("The resulting DOM structure is ready");
+        },
+        afterResize: function(){
+        	//在窗口发生大小改变的时候被调用
+        },
+        afterResponsive: function(isResponsive){
+            //js发生改变时候调用????
+            alert(isResponsive);
+		},
+        afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+        	//滚动到某一水平滑块后的回调函数
+        	//anchorLink: 锚点
+			//index: section索引,从1开始
+			//slideAnchor: 幻灯片锚点
+			//slideIndex: 幻灯片索引,从0开始
+			//console.log(anchorLink, index, slideAnchor, slideIndex);
+        },
+        onSlideLeave: function(anchorLink, index, slideIndex, direction,nextSlideIndex){
+        	//某一水平滑块滚动前的回调函数
+
+			//anchorLink: section锚点.
+			//index: section索引. 从1开始.
+			//slideIndex: slide索引. 从0开始.
+			//direction: 幻灯片滚动方向.
+			//nextSlideIndex: 目标幻灯片索引,从0开始. ??undefined
+			//console.log(anchorLink, index, slideIndex, direction, nextSlideIndex);
+        }
+    });
+
+		//在$('#fullpage').fullpage()插件外调用
+		//$.fn.fullpage.moveSectionUp(); //向上滚动 触发一次
+		//$.fn.fullpage.moveSectionDown();	//向下滚动
+		//$.fn.fullpage.moveTo('firstPage', 2); //设置屏幕滚动到某个section或者slide，两个参数都是某个内容块的索引值或者是锚文本，默认情况下slide的索引被设置为0.
+		//$.fn.fullpage.silentMoveTo('firstPage',1);  //这个函数的用法和MoveTo方法完全一样，只是MoveTo在切换的时候有动画效果，而silentMoveTo方法在切换的时候没有动画效果，直接跳转到对应的section中。???
+		//$.fn.fullpage.moveSlideRight();//幻灯片向右滑动，将下一个幻灯片显示在当前的屏幕中。
+		//$.fn.fullpage.moveSlideLeft();//设置幻灯片向左滑动，将上一个幻灯片显示在当前的屏幕中。
+		//$.fn.fullpage.setAutoScrolling(false);//页面是否自动滚动???
+		//$.fn.fullpage.setFitToSection(false);//是否自适应section在屏幕上。 高宽自适应 ??
+		//$.fn.fullpage.setLockAnchors(true);//设置选项lockAnchors确定将锚文本锁定到URL中。??
+		
+		//$.fn.fullpage.setAllowScrolling(false, 'down, right'); //添加或者禁止Fullpage自动绑定的鼠标滑轮和移动触摸事件，不过用户任然可以通过键盘和点击快速导航的方式切换section/slide。要取消键盘事件需要使用setKeyboardScrolling方法。	directions，可选参数，可以设置的值：all, up, down, left, right或者设置组合的参数，例如down, right，他设置的两个方向上将禁止或者激活滚动。
+
+		//$.fn.fullpage.setKeyboardScrolling(false, 'down, right');//添加或者禁止键盘对section/slide的控制，这个事件是默认绑定的。	directions，可选参数，可以设置的值：all, up, down, left, right或者设置组合的参数，例如down, right，他设置的两个方向上将禁止或者激活键盘的滚动。
+
+		//$.fn.fullpage.setRecordHistory(false);//定义是否为每个URL的变更纪录到浏览器中的历史记录中
+
+		//$.fn.fullpage.setScrollingSpeed(3000);//每个section/slide滚动的时间
+
+		//$.fn.fullpage.destroy();//移除Fullpage的事件和添加的HTML/CSS样式风格 可以被设置为空，或者all 如果设置为空则移除所有添加的事件效果	如果设置为all,除此之外,还会移除所有的(通过fullpage添加的)css样式和html结构
+
+		//$.fn.fullpage.reBuild();//更新DOM结构以适应新的窗口大小或其内容。最好与Ajax调用或外部网站的DOM结构的变化组合使用。
+
+
+
+
+
+
+
+
+
+	</script>	
+</body>
+</html>
